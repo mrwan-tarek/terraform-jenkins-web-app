@@ -8,6 +8,7 @@ pipeline {
                     sh "echo \"my-region = \${region}\"  > terraform.tfvars "
                     sh "echo \"my-access-key = \${access_key}\"  >> terraform.tfvars "
                     sh "echo \"my-secret-key = \${secret_key}\"  >> terraform.tfvars "
+                    sh "echo \"vpc_CIDR = \${vpc_CIDR}\"  >> terraform.tfvars "
                 }
             }
         }
@@ -15,6 +16,7 @@ pipeline {
             steps {
                 script {
                     sh "cat terraform.tfvars" 
+                    sh "terraform apply --auto-approve "
                 }
             }
         }
