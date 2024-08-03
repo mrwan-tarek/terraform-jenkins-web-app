@@ -16,6 +16,7 @@ pipeline {
             steps {
                 script {
                     sh "cat terraform.tfvars" 
+                    sh "terraform init "
                     sh "terraform apply --auto-approve "
                 }
             }
