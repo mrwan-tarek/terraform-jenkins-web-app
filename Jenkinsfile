@@ -5,12 +5,9 @@ pipeline {
         stage(' Test App ') {
             steps {
                 script {
-                    sh """
-                    cat <<EOF > terraform.tfvars
-                    my-region = $region
-                    my-access-key = $access-key
-                    my-secret-key = $secret-key
-                    EOF"""
+                    sh "echo \"my-region = \${region}\"  > terraform.tfvars "
+                    sh "echo \"my-access-key = \${access-key}\"  >> terraform.tfvars "
+                    sh "echo \"my-secret-key = \${secret-key}\"  >> terraform.tfvars "
                     sh "cat terraform.tfvars" 
                 }
             }
