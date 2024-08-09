@@ -11,7 +11,7 @@ pipeline {
                     sh "echo \"session-token = \${session_token}\"  >> variables "
                     sh "echo \"vpc_CIDR = \${vpc_CIDR}\"  >> variables "
                     sh "cat variables"
-                    sh "sed 's/\^/\"/; s/\$/\"/' variables > terraform.tfvars"                    
+                    sh 'sed \'s/^/\\\" /; s/$/\\\"/\' variables > terraform.tfvars'                    
                     sh "cat terraform.tfvars"
                 }
             }
