@@ -2,8 +2,8 @@ resource "aws_lb" "app-lb" {
   name = "app-lb"
   internal     = true
   load_balancer_type = "application"
-  security_groups = [ var.lb_sg ] 
-  subnets =[ var.subnet_3 , var.subnet_4 ] 
+  security_groups = [ aws_security_group.app-sg.id ] 
+  subnets =[ aws_subnet.private_subnet_1.id ,aws_subnet.private_subnet_2.id  ] 
 }
 resource "aws_lb_listener" "app-listener" {
   load_balancer_arn = aws_lb.app-lb.arn
@@ -19,7 +19,7 @@ resource "aws_lb_target_group" "app-tg" {
   name     = "app-lb-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = var.vpc_1
+  vpc_id   = aws_vpc.my_vpc.id
   health_check {
     healthy_threshold = 3
     unhealthy_threshold = 2
@@ -36,9 +36,9 @@ resource "aws_launch_configuration" "app_launch_config" {
   image_id = var.ami
   instance_type = var.instance_type
   key_name = var.key_pair
-  security_groups = [ var.lb_sg ]
+  security_groups = [ aws_security_group.app-sg.id ]
   associate_public_ip_address = false
-  user_data = "${file("app-server.sh")}"
+  user_data = "${file("web-server.sh")}"
     lifecycle {
     create_before_destroy = true
   }
@@ -52,7 +52,7 @@ resource "aws_autoscaling_group" "app_asg" {
   
   health_check_type    = "ELB"
   launch_configuration = aws_launch_configuration.app_launch_config.id
-  vpc_zone_identifier  = [ var.subnet_3 , var.subnet_4 ]
+  vpc_zone_identifier  = [ aws_subnet.private_subnet_1.id , aws_subnet.private_subnet_2.id ]
   # Required to redeploy without an outage.
 
   tag {

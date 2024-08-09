@@ -7,8 +7,8 @@ provider "aws" {
 
 resource "aws_lb" "web-lb" {
   name = "web-lb"
-  security_groups = [ var.lb_sg ] 
-  subnets =[ var.subnet_1 , var.subnet_2 ] 
+  security_groups = [ aws_security_group.web-sg.id ] 
+  subnets =[ aws_subnet.public_subnet_1.id , aws_subnet.public_subnet_2.id ] 
 }
 resource "aws_lb_listener" "web-listener" {
   load_balancer_arn = aws_lb.web-lb.arn
@@ -24,7 +24,7 @@ resource "aws_lb_target_group" "web-tg" {
   name     = "web-lb-tg"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = var.vpc_1
+  vpc_id   = aws_vpc.my_vpc.id
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
@@ -39,7 +39,7 @@ resource "aws_launch_configuration" "web_launch_config" {
   image_id = var.ami
   instance_type = var.instance_type
   key_name = var.key_pair
-  security_groups = [ var.lb_sg ]
+  security_groups = [ aws_security_group.web-sg.id ]
   associate_public_ip_address = true
   user_data = "${file("web-server.sh")}"
   lifecycle {
@@ -55,7 +55,7 @@ resource "aws_autoscaling_group" "web_asg" {
   
   health_check_type    = "ELB"
   launch_configuration = aws_launch_configuration.web_launch_config.id
-  vpc_zone_identifier  = [ var.subnet_1 , var.subnet_2 ]
+  vpc_zone_identifier  = [ aws_subnet.public_subnet_1.id , aws_subnet.public_subnet_2.id ]
   # Required to redeploy without an outage.
   lifecycle {
     create_before_destroy = true
