@@ -1,5 +1,6 @@
 # Terraform AWS Infrastructure for 3-Tier Web Application
 ![AWS Architecture](images/3-tier-aws-architecture.PNG)
+
 This repository provides a Terraform configuration for deploying a 3-tier web application infrastructure on AWS. The setup includes a scalable and secure environment that consists of a web tier, application tier, and database tier, all managed via a Jenkins pipeline.
 
 ## Overview
