@@ -7,16 +7,22 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f1de; /* Creamy color */
+            background-color: #F8F6F1; /* Creamy color */
             font-family: Arial, sans-serif;
             margin: 0;
         }
 
+        h1 {
+            margin-bottom: 20px;
+            text-align: center; 
+        }
+
         form {
-            background-color: #d8f3dc; /* Mint green color */
+            background-color: #97DECE; /* Mint green color */
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -24,15 +30,24 @@
         }
 
         input[type="text"],
-        input[type="number"] {
+        input[type="number"]{
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+        #gender{
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
 
         input[type="submit"] {
+            margin-top: 29px;
             background-color: #2a9d8f; /* darker mint green */
             color: white;
             border: none;
@@ -49,11 +64,17 @@
     </style>
 </head>
 <body>
+    <h1>Welcome to Our Application !</h1>
     <form action="submit.php" method="post">
         <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
+        <input type="text" name="name" placeholder="Enter Your Name" required><br>
         <label for="age">Age:</label>
-        <input type="number" name="age" required><br>
+        <input type="number" name="age" placeholder="Enter Your Age" required><br>
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender" style="cursor: pointer;">
+            <option class="option" value="male">Male</option>
+            <option class="option" value="female">Female</option>
+        </select><br>
         <input type="submit" value="Submit">
     </form>
 </body>
