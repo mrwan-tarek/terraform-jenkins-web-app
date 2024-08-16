@@ -10,11 +10,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #f4f1de; /* Creamy color */
             font-family: Arial, sans-serif;
             margin: 0;
         }
 
         form {
+            background-color: #d8f3dc; /* Mint green color */
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -31,6 +33,7 @@
         }
 
         input[type="submit"] {
+            background-color: #2a9d8f; /* darker mint green */
             color: white;
             border: none;
             padding: 10px;
