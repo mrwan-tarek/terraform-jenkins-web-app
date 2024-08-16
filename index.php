@@ -42,6 +42,10 @@
             transition: background-color 0.3s;
             font-size: 16px;
         }
+
+        input[type="submit"]:hover {
+            background-color: #21867a;
+        }
     </style>
 </head>
 <body>
