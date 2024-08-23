@@ -7,3 +7,7 @@ output "app_autoscaling_group_name" {
 output "RDS_endpoint" {
   value = aws_db_instance.rds.endpoint
 }
+
+output "RDS_endpoint_public" {
+  value = aws_db_instance.rds_public.endpoint
+}

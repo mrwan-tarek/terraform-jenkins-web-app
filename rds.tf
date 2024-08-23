@@ -23,3 +23,29 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot  = true
 }
 
+#-------------------------------------------------
+resource "aws_db_subnet_group" "db_subnet_public" {
+  name       = "public"
+  subnet_ids = [aws_subnet.public_subnet_1.id , aws_subnet.public_subnet_2.id ]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
+
+resource "aws_db_instance" "rds_public" {
+  identifier           = "rds-web-app-db_public"
+  allocated_storage    = 20
+  storage_type         = "gp2"
+  engine               = "mysql"
+  engine_version       = "8.0" 
+  instance_class       = var.db_instance_type
+  db_name              = "web_app_db"
+  username             = "admin"
+  password             = "1234asAS"
+  vpc_security_group_ids   = [ aws_security_group.web-sg.id ]
+  db_subnet_group_name =  aws_db_subnet_group.db_subnet_public.name
+  publicly_accessible  = true
+  skip_final_snapshot  = true
+}
+
