@@ -1,8 +1,8 @@
 <?php
 $servername = "";
-$username = "";
-$password = "";
-$dbname = "";
+$username = "admin";
+$password = "1234asAS";
+$dbname = "web_app_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -11,9 +11,12 @@ if ($conn->connect_error) {
 }
 
 $name = $_POST['name'];
+$age = $_POST['age'];
+$gender = $_POST['gender'];
 
-$stmt = $conn->prepare("INSERT INTO users (name) VALUES (?)");
-$stmt->bind_param("si", $name);
+
+$stmt = $conn->prepare("INSERT INTO users (name ,gender ,age) VALUES (? ? ?)");
+$stmt->bind_param("ssi", $name);
 
 if ($stmt->execute()) {
     echo "New record created successfully";
