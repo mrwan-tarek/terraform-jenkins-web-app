@@ -23,6 +23,7 @@ pipeline {
                     sh "echo \"max_size = \\\"\${max_size_ASG}\\\" \"  >> terraform.tfvars "
                     sh "echo \"desired_size = \\\"\${desired_size_ASG}\\\" \"  >> terraform.tfvars "
                     sh "echo \"db_instance_type = \\\"\${RDS_instance_type}\\\" \"  >> terraform.tfvars "
+                    sh "cat terraform.tfvars "
                 }
             }
         }
