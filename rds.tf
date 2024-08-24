@@ -34,7 +34,7 @@ resource "aws_db_subnet_group" "db_subnet_public" {
 }
 
 resource "aws_db_instance" "rds_public" {
-  identifier           = "rds-web-app-db_public"
+  identifier           = "rds-web-app-db-public"
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "mysql"
