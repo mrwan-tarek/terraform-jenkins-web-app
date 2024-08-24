@@ -22,9 +22,3 @@ resource "aws_db_instance" "rds" {
   publicly_accessible  = false
   skip_final_snapshot  = true
 }
-
-
-  tags = {
-    Name = "My DB subnet group"
-  }
-}
