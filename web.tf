@@ -1,6 +1,7 @@
 provider "aws" {
   region  = var.my-region
   profile = var.aws_profile
+  token   = var.session-token
 }
 
 resource "aws_lb" "web-lb" {

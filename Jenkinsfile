@@ -8,6 +8,7 @@ pipeline {
                 script {
                     sh "echo \"my-region = \\\"\${region}\\\" \"  > terraform.tfvars "
                     sh "echo \"aws_profile = \\\"\${aws_profile}\\\" \"  >> terraform.tfvars "
+                    sh "echo \"session-token = \\\"\${session_token}\\\" \"  >> terraform.tfvars "
                     sh "echo \"vpc_CIDR = \\\"\${vpc_CIDR}\\\" \"  >> terraform.tfvars "
                     sh "echo \"public_subnet_cidr_block_1 = \\\"\${public_subnet_1_CIDR_block}\\\" \"  >> terraform.tfvars "
                     sh "echo \"public_subnet_cidr_block_2 = \\\"\${public_subnet_2_CIDR_block}\\\" \"  >> terraform.tfvars "
