@@ -1,5 +1,5 @@
 <?php
-$servername = "database-2.cefu4bi34c5q.us-west-2.rds.amazonaws.com:3306";
+$servername = "database-1.cefu4bi34c5q.us-west-2.rds.amazonaws.com:3306";
 $username = "admin";
 $password = "1234asAS";
 $dbname = "web_app_db";
@@ -15,7 +15,7 @@ $age = $_POST['age'];
 $gender = $_POST['gender'];
 
 
-$stmt = $conn->prepare("INSERT INTO users (name ,gender ,age) VALUES (? ? ?)");
+$stmt = $conn->prepare("INSERT INTO users (name,gender,age) VALUES (?, ?, ?)");
 $stmt->bind_param("ssi", $name);
 
 if ($stmt->execute()) {
