@@ -43,7 +43,7 @@ pipeline {
                 }
             }
         }
-        stage(' applying terraform infrastructure ') {
+        stage(' trying ') {
             when { environment name: 'job_type', value: 'destroy' }
             steps {
                 script {
