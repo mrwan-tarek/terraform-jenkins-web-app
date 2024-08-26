@@ -3,6 +3,7 @@ pipeline {
     agent any
     stages {
         stage(' creating .tfvars file ') {
+            when { environment name: 'job_type', value: 'build' }
             steps {
                 script {
                     sh "echo \"my-region = \\\"\${region}\\\" \"  > terraform.tfvars "
@@ -27,6 +28,7 @@ pipeline {
             }
         }
         stage(' initiate terraform ') {
+            when { environment name: 'job_type', value: 'build' }
             steps {
                 script {
                     sh "terraform init "
@@ -34,12 +36,21 @@ pipeline {
             }
         }
         stage(' applying terraform infrastructure ') {
+            when { environment name: 'job_type', value: 'build' }
             steps {
                 script {
-                    sh "terraform apply --auto-approve "
+                    sh "terraform apply --auto-approve -- "
                 }
             }
         }
+        stage(' applying terraform infrastructure ') {
+            when { environment name: 'job_type', value: 'destroy' }
+            steps {
+                script {
+                    sh "ll"
+                }
+            }
+        } 
         
     }   
 }
