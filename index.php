@@ -80,7 +80,8 @@
 
     <div class="form-container">
         <h2>User Submission</h2>
-        <form action="submit.php" method="post">
+        <!-- Replace application server with the actual one   -->
+        <form action="http://application_server/submit.php" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" placeholder="Enter Your Name" required><br>
             <label for="age">Age:</label>
@@ -96,14 +97,15 @@
 
     <div class="form-container">
         <h2>Search User</h2>
-        <form action="search.php" method="post">
+        <!-- Replace application server with the actual one   -->
+        <form action="http://application_server/search.php" method="post">
             <input type="text" id="search" name="search" placeholder="Search User by Name" required>
             <input type="submit" value="Search">
         </form>
     </div>
 
     <div id="results" class="results">
-        <!-- Search results will be displayed here -->
+        <!-- Search results will be displayed -->
     </div>
 </body>
 </html>
