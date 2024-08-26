@@ -1,7 +1,5 @@
 variable my-region {}
-variable my-access-key {}
-variable my-secret-key {}
-variable session-token {}
+variable aws_profile {}
 #-------------------------------------------
 variable vpc_CIDR {}
 variable public_subnet_cidr_block_1 {}
