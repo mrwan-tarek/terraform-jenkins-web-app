@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     sh "terraform init "
-                    sh "aws s3 cp s3://terraform-jenkins-app/terraform state/ `pwd` --recursive --profile ${aws_profile}"
+                    //sh "aws s3 cp s3://terraform-jenkins-app/terraform state/ `pwd` --recursive --profile ${aws_profile}"
                 }
             }
         }
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     sh "terraform apply --auto-approve"
-                    sh "aws s3 cp terraform.tfstate s3://terraform-jenkins-app/terraform state/ --profile ${aws_profile}"
+                    //sh "aws s3 cp terraform.tfstate s3://terraform-jenkins-app/terraform state/ --profile ${aws_profile}"
                 }
             }
         }
@@ -48,9 +48,9 @@ pipeline {
             steps {
                 script {
                     sh "terraform init "
-                    sh "aws s3 cp s3://terraform-jenkins-app/terraform state/terraform.tfstate `pwd` --recursive --profile ${aws_profile}"
+                   // sh "aws s3 cp s3://terraform-jenkins-app/terraform state/terraform.tfstate `pwd` --recursive --profile ${aws_profile}"
                     sh "terraform destroy --auto-approve"
-                    sh "aws s3 cp terraform.tfstate s3://terraform-jenkins-app/terraform state/ --profile ${aws_profile}"
+                    //sh "aws s3 cp terraform.tfstate s3://terraform-jenkins-app/terraform state/ --profile ${aws_profile}"
 
                 }
             }
