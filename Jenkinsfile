@@ -47,7 +47,7 @@ pipeline {
             when { environment name: 'job_type', value: 'destroy' }
             steps {
                 script {
-                    sh "ll"
+                    sh "ls"
                 }
             }
         } 
