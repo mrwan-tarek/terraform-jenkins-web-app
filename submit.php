@@ -9,34 +9,36 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//////////////////////////// Here 
-// Process form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $data = $_POST['data'];
-    
-    $sql = "INSERT INTO users (name,gender,age) VALUES ('$data')";
+// Function to create the users table if it doesn't exist
+function createUsersTable($conn) {
+    $sql = "CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(100) NOT NULL,
+            age INT CHECK(age >= 0),
+            gender ENUM('male', 'female') NOT NULL
+            )";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($conn->query($sql) !== TRUE) {
+        echo "Error creating table: " . $conn->error . "<br>";
     }
 }
-// ////////////////////////////////
-// $name = $_POST['name'];
-// $age = $_POST['age'];
-// $gender = $_POST['gender'];
+createUsersTable($conn);
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
+    
+    $stmt = $conn->prepare("INSERT INTO users (name,gender,age) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $name , $gender , $age);
 
-// $stmt = $conn->prepare("INSERT INTO users (name,gender,age) VALUES (?, ?, ?)");
-// $stmt->bind_param("ssi", $name , $gender , $age);
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 
-// if ($stmt->execute()) {
-//     echo "New record created successfully";
-// } else {
-//     echo "Error: " . $stmt->error;
-// }
-
-// $stmt->close();
+    $stmt->close();
+}
 $conn->close();
 ?>
