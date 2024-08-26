@@ -16,7 +16,7 @@ $gender = $_POST['gender'];
 
 
 $stmt = $conn->prepare("INSERT INTO users (name,gender,age) VALUES (?, ?, ?)");
-$stmt->bind_param("ssi", $name);
+$stmt->bind_param("ssi", $name , $gender , $age);
 
 if ($stmt->execute()) {
     echo "New record created successfully";
