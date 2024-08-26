@@ -1,10 +1,8 @@
 #!/bin/bash
 sudo yum update -y
-sudo yum install mysql -y
-sudo amazon-linux-extras install docker -y
-sudo service docker start
-sudo usermod -a -G docker ec2-user
-sudo chkconfig docker on
-sudo chmod 666 /var/run/docker.sock
-docker pull dhruvin30/dhsoniweb:v1
-docker run -d -p 80:80 dhruvin30/dhsoniweb:latest
+sudo yum install git -y
+sudo yum install httpd -y
+git clone --branch app --single-branch https://github.com/mrwan-tarek/terraform-jenkins-web-app.git
+cp  /home/ec2-user/terraform-jenkins-web-app/index.php /var/www/html/
+chmod -R 755 /var/www/html
+systemctl start httpd
