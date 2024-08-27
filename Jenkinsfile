@@ -39,6 +39,7 @@ pipeline {
             when { environment name: 'job_type', value: 'build' }
             steps {
                 script {
+                    sh "cat /home/mrwan/.aws/credentials"
                     sh "terraform apply --auto-approve"
                     //sh "aws s3 cp terraform.tfstate s3://terraform-jenkins-app/terraform state/ --profile ${aws_profile}"
                 }
