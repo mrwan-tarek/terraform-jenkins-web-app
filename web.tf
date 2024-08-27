@@ -1,7 +1,6 @@
 provider "aws" {
   region  = var.my-region
   profile = var.aws_profile
-  token   = var.session-token
 }
 
 resource "aws_lb" "web-lb" {
@@ -40,7 +39,7 @@ resource "aws_launch_configuration" "web_launch_config" {
   key_name = var.key_pair
   security_groups = [ aws_security_group.web-sg.id ]
   associate_public_ip_address = true
-  user_data = "${file("./web-server.sh")}"
+  user_data = "${file("web-server.sh")}"
   lifecycle {
     create_before_destroy = true
   }

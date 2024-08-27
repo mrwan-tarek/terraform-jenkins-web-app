@@ -1,6 +1,5 @@
 variable my-region {}
 variable aws_profile {}
-variable session-token {}
 #-------------------------------------------
 variable vpc_CIDR {}
 variable public_subnet_cidr_block_1 {}

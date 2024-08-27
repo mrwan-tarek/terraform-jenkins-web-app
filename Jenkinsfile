@@ -8,7 +8,6 @@ pipeline {
                 script {
                     sh "echo \"my-region = \\\"\${region}\\\" \"  > terraform.tfvars "
                     sh "echo \"aws_profile = \\\"\${aws_profile}\\\" \"  >> terraform.tfvars "
-                    sh "echo \"session-token = \\\"\${session_token}\\\" \"  >> terraform.tfvars "
                     sh "echo \"vpc_CIDR = \\\"\${vpc_CIDR}\\\" \"  >> terraform.tfvars "
                     sh "echo \"public_subnet_cidr_block_1 = \\\"\${public_subnet_1_CIDR_block}\\\" \"  >> terraform.tfvars "
                     sh "echo \"public_subnet_cidr_block_2 = \\\"\${public_subnet_2_CIDR_block}\\\" \"  >> terraform.tfvars "
@@ -39,14 +38,12 @@ pipeline {
             when { environment name: 'job_type', value: 'build' }
             steps {
                 script {
-                    sh "cat web-server.sh"
-                    sh "ls"
                     sh "terraform apply --auto-approve"
                     //sh "aws s3 cp terraform.tfstate s3://terraform-jenkins-app/terraform state/ --profile ${aws_profile}"
                 }
             }
         }
-        stage(' trying ') {
+        stage(' destroying the infrastructure') {
             when { environment name: 'job_type', value: 'destroy' }
             steps {
                 script {

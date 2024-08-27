@@ -38,7 +38,7 @@ resource "aws_launch_configuration" "app_launch_config" {
   key_name = var.key_pair
   security_groups = [ aws_security_group.app-sg.id ]
   associate_public_ip_address = false
-  user_data = "${file("./app-server.sh")}"
+  user_data = "${file("app-server.sh")}"
     lifecycle {
     create_before_destroy = true
   }
