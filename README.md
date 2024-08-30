@@ -62,7 +62,7 @@ The pipeline now includes an interactive prompt to choose between building or de
      Enter your Access Key ID, Secret Access Key, default region, and output format when prompted. 
 
   3. **Set the AWS Profile in Jenkins**:
-     Ensure Jenkins is configured to use the AWS profile by setting the profile name in the environment variables or using Jenkins credentials management.
+     Ensure Jenkins is configured to use the AWS profile by setting the profile name in the environment variables.
 
 
 ### Configuration
