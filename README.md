@@ -51,6 +51,20 @@ The pipeline now includes an interactive prompt to choose between building or de
 - **Jenkins**: Ensure Jenkins is set up and configured with necessary plugins (e.g., Terraform Plugin).
 - **AWS Account**: Configure your AWS credentials using AWS CLI or environment variables.
 
+  **Note:** To ensure secure access, you must use an AWS profile that contains your access key and secret key. Follow these steps to create and configure your AWS profile:
+
+  1. **Install AWS CLI**: Download and install the AWS CLI from [AWS CLI Installation](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
+  
+  2. **Configure AWS Profile**:
+     ```bash
+     aws configure --profile your-profile-name
+     ```
+     Enter your Access Key ID, Secret Access Key, default region, and output format when prompted. 
+
+  3. **Set the AWS Profile in Jenkins**:
+     Ensure Jenkins is configured to use the AWS profile by setting the profile name in the environment variables or using Jenkins credentials management.
+
+
 ### Configuration
 
 1. **Set Up Jenkins Pipeline**
