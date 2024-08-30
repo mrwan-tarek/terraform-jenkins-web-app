@@ -36,12 +36,12 @@ The pipeline performs the following steps:
 2. **Initializing Terraform**: Prepares the Terraform environment for execution.
 3. **Applying Terraform Configuration**: Deploys the infrastructure as defined by the Terraform scripts.
 
-New Features
+### New Features
 
 The pipeline now includes an interactive prompt to choose between building or destroying the infrastructure. The options are:
 
-    Build: Initializes and applies the Terraform configuration to deploy the infrastructure as defined by the Terraform scripts.
-    Destroy: Destroys the existing infrastructure, removing all resources created previously.
+1. **Build**: Initializes and applies the Terraform configuration to deploy the infrastructure as defined by the Terraform scripts.
+2. **Destroy**: Destroys the existing infrastructure, removing all resources created previously.
 
 ## Usage
 
