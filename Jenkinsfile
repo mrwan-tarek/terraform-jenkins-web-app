@@ -3,7 +3,6 @@ pipeline {
     agent any
     stages {
         stage(' creating .tfvars file ') {
-            when { environment name: 'job_type', value: 'build' }
             steps {
                 script {
                     sh "echo \"my-region = \\\"\${region}\\\" \"  > terraform.tfvars "
@@ -47,8 +46,6 @@ pipeline {
             when { environment name: 'job_type', value: 'destroy' }
             steps {
                 script {
-                    sh "echo \"my-region = \\\"\${region}\\\" \"  > terraform.tfvars "
-                    sh "echo \"aws_profile = \\\"\${aws_profile}\\\" \"  >> terraform.tfvars "
                     sh "terraform init "
                    // sh "aws s3 cp s3://terraform-jenkins-app/terraform state/terraform.tfstate `pwd` --recursive --profile ${aws_profile}"
                     sh "terraform destroy --auto-approve"
